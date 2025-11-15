@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function UploadForm({ onSubmitFileOrText }) {
   const [file, setFile] = useState(null);
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

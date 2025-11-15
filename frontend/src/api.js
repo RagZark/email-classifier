@@ -15,6 +15,8 @@ export const classifyEmail = async (file) => {
       "Content-Type": "multipart/form-data",
     },
   });
+
+  console.log("📨 API Response (file):", response.data);
   return response.data;
 };
 
@@ -28,5 +30,7 @@ export const classifyEmailText = async (text) => {
       },
     }
   );
+
+  console.log("📨 API Response (text):", response.data);
   return response.data;
 };

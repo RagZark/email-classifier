@@ -1,45 +1,60 @@
 from utils.ai_client import ask_gemini
 
 def classify_email(text: str) -> str:
-    prompt = f""" 
-    Você é um classificador de emails.
-
-    Classifique o email abaixo em APENAS UMA categoria:
-    - Produtivo
-    - Improdutivo
-
-    Email:
-    {text}
-
-    Responda somente com: Produtivo ou Improdutivo.
-    """
-
-    result = ask_gemini(prompt).strip()
-
-    result = result.lower()
-
-    if "produtivo" in result:
-        return "Produtivo"
-    else:
+    print(f"🎯 INICIANDO CLASSIFICACAO: '{text}'")
+    
+    text_lower = text.lower().strip()
+    obvious_improductive = ['ok', 'obrigado', 'obrigada', 'valeu', 'grato', 'confirmado']
+    
+    if text_lower in obvious_improductive:
+        print(f"CLASSIFICACAO MANUAL: '{text}' → IMPRODUTIVO")
         return "Improdutivo"
     
+    if len(text_lower.split()) <= 2:
+        for word in obvious_improductive:
+            if word in text_lower:
+                print(f"CLASSIFICACAO MANUAL (curto): '{text}' → IMPRODUTIVO")
+                return "Improdutivo"
+    
+    prompt = f"""
+    Classifique como "Produtivo" ou "Improdutivo":
+    Email: "{text}"
+    Resposta APENAS: Produtivo ou Improdutivo
+    """
+    
+    try:
+        result = ask_gemini(prompt).strip().lower()
+        print(f"🤖 RESPOSTA BRUTA DA IA: '{result}'")
+        
+        if "produtivo" in result:
+            final = "Produtivo"
+        elif "improdutivo" in result:
+            final = "Improdutivo"
+        else:
+            final = "Improdutivo"
+            print(f"⚠️  IA não respondeu claramente, usando fallback: {final}")
+        
+        print(f"🎯 CATEGORIA FINAL: {final}")
+        return final
+        
+    except Exception as e:
+        print(f"ERRO: {e}")
+        return "Improdutivo"
 
 def generate_auto_response(email_text: str, category: str) -> str:
-    prompt = f""" 
-    Gere uma resposta automática baseada na categoria atual de email.
-
-    Categoria: {category}
-
-    Email original:
-    {email_text}
-
-    Instruções:
-    - Seja educado.
-    - Responda em português.
-    - Se o email for Produtivo, dê uma resposta útil e com a próxima ação clara.
-    - Se o email for Improdutivo, responda brevemente, agradecendo ou confirmando.
-    - Não mencione que você é uma IA(Inteligencia Artificial).
-    """
-
-    response = ask_gemini(prompt)
-    return response.strip()
+    print(f"GERANDO RESPOSTA - Categoria: {category}")
+    
+    text_lower = email_text.lower().strip()
+    
+    if category == "Improdutivo":
+        if text_lower == 'ok':
+            response = "Confirmado!"
+        elif any(word in text_lower for word in ['obrigado', 'obrigada', 'grato']):
+            response = "Por nada!"
+        else:
+            response = "Obrigado!"
+    else:
+        response = "Entendido. Vou analisar e retorno em breve."
+    
+    print(f"RESPOSTA: '{response}'")
+    return response

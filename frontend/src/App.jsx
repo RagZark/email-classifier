@@ -20,6 +20,8 @@ export default function App() {
       } else {
         data = await classifyEmailText(input);
       }
+
+      console.log("📨 Dados recebidos do backend:", data);
       setResult(data);
     } catch (error) {
       console.error("Erro ao classificar:", error);

@@ -1,14 +1,9 @@
 from flask import Flask
+from flask_cors import CORS
 from routes.classify_routes import routes
 
 app = Flask(__name__)
-
-try:
-    from flask_cors import CORS
-    CORS(app)
-    print("CORS habilitado")
-except ImportError:
-    print("flask-cors não instalado. Execute: pip install flask-cors")
+CORS(app)
 
 app.register_blueprint(routes, url_prefix='/api')
 
