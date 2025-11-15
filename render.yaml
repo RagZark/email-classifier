@@ -5,13 +5,13 @@ services:
     plan: free
     region: ohio
     buildCommand: |
-      # Frontend
-      cd frontend && npm install && npm run build
-
-      # Backend - instala direto na raiz
+      echo "=== INSTALANDO DEPENDÊNCIAS ==="
       pip install --upgrade pip
       pip install flask flask-cors python-dotenv google-genai PyPDF2 gunicorn
-    startCommand: cd backend && gunicorn app:app
+
+      echo "=== BUILD DO FRONTEND ==="
+      cd frontend && npm install && npm run build
+    startCommand: gunicorn --chdir backend app:app
     envVars:
       - key: GEMINI_API_KEY
         value: sua_chave_da_gemini_aqui
