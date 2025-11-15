@@ -11,4 +11,3 @@ services:
         value: sua_chave_da_gemini_aqui
       - key: FLASK_ENV
         value: production
-    staticPublishPath: ./frontend/dist
