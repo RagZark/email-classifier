@@ -5,8 +5,12 @@ services:
     plan: free
     region: ohio
     buildCommand: |
+      # Frontend
       cd frontend && npm install && npm run build
-      cd ../backend && pip install -r requirements.txt
+
+      # Backend - instala direto na raiz
+      pip install --upgrade pip
+      pip install flask flask-cors python-dotenv google-genai PyPDF2 gunicorn
     startCommand: cd backend && gunicorn app:app
     envVars:
       - key: GEMINI_API_KEY
