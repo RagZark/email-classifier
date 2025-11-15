@@ -1,12 +1,12 @@
 from utils.ai_client import ask_gemini
 
 def classify_email(text: str) -> str:
-    prompt: f""" 
+    prompt = f""" 
     Você é um classificador de emails.
 
     Classifique o email abaixo em APENAS UMA categoria:
     - Produtivo
-    -Improdutivo
+    - Improdutivo
 
     Email:
     {text}

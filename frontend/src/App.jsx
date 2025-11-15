@@ -6,9 +6,13 @@ import ResultBox from "./components/ResultBox";
 export default function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (input) => {
     setLoading(true);
+    setError(null);
+    setResult(null);
+
     try {
       let data;
       if (input instanceof File) {
@@ -19,17 +23,23 @@ export default function App() {
       setResult(data);
     } catch (error) {
       console.error("Erro ao classificar:", error);
-      alert("Ocorreu um erro ao classificar o email.");
+      setError(
+        "Ocorreu um erro ao classificar o email. Verifique se o backend está rodando."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <h1>Classificador de Email</h1>
+    <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
+      <h1>Classificador de Email com IA</h1>
       <UploadForm onSubmitFileOrText={handleSubmit} />
+
       {loading && <p>Processando...</p>}
+
+      {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
+
       <ResultBox result={result} />
     </div>
   );
