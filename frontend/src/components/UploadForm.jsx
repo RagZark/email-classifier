@@ -19,7 +19,9 @@ export default function UploadForm({ onSubmitFileOrText }) {
   return (
     <form className="mr-10" onSubmit={handleSubmit}>
       <div>
-        <label className="text-orange-100">Digite seu texto:</label>
+        <label className="text-orange-100 font-semibold">
+          Digite seu texto:
+        </label>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}

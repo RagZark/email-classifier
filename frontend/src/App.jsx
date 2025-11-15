@@ -39,10 +39,14 @@ export default function App() {
       <h1 className="text-4xl font-bold text-white mb-4">
         Classificador de Email com IA
       </h1>
-      <div className="flex w-full justify-center">
+      <div className="flex w-full justify-center items-center">
         <UploadForm onSubmitFileOrText={handleSubmit} />
 
-        {loading && <p>Processando...</p>}
+        {loading && (
+          <p className="w-80 h-80 bg-white/5 border-2 border-orange-400/30 rounded-xl text-white placeholder-orange-300/50 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 flex flex-col justify-center pl-4">
+            Processando...
+          </p>
+        )}
 
         {error && (
           <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
