@@ -1,10 +1,58 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const getApiBaseUrl = () => {
+  if (import.meta.env.MODE === "development") {
+    return "http://localhost:5000/api";
+  }
+
+  // Substituir pela URL real do seu backend após o deploy
+  return "https://seu-backend.railway.app/api";
+  // se for render: "https://seu-backend.onrender.com/api"
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
+console.log("🔧 API Base URL:", API_BASE_URL);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 30000,
 });
+
+api.interceptors.request.use(
+  (config) => {
+    if (import.meta.env.MODE === "development") {
+      console.log(`Fazendo requisição para: ${config.url}`);
+    }
+    return config;
+  },
+  (error) => {
+    console.error("Erro na requisição:", error);
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  (response) => {
+    if (import.meta.env.MODE === "development") {
+      console.log("Resposta recebida:", response.status);
+    }
+    return response;
+  },
+  (error) => {
+    console.error("Erro na resposta:", error.response?.data || error.message);
+
+    if (error.code === "ECONNREFUSED") {
+      alert("⚠️ Servidor não está respondendo. Tente novamente mais tarde.");
+    } else if (error.response?.status === 500) {
+      alert("⚠️ Erro interno no servidor. Tente novamente.");
+    } else if (error.response?.status === 404) {
+      alert("⚠️ Endpoint não encontrado. Verifique a configuração.");
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export const classifyEmail = async (file) => {
   const formData = new FormData();
@@ -15,8 +63,6 @@ export const classifyEmail = async (file) => {
       "Content-Type": "multipart/form-data",
     },
   });
-
-  console.log("📨 API Response (file):", response.data);
   return response.data;
 };
 
@@ -30,7 +76,5 @@ export const classifyEmailText = async (text) => {
       },
     }
   );
-
-  console.log("📨 API Response (text):", response.data);
   return response.data;
 };

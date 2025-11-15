@@ -49,7 +49,9 @@ export default function App() {
         )}
 
         {error && (
-          <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
+          <div className="md:w-80 md:h-80 w-80 h-60 mt-4 bg-white/5 border-2 border-orange-400/30 rounded-xl text-red placeholder-orange-300/50 font-bold focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 flex flex-col justify-center pl-4">
+            {error}
+          </div>
         )}
 
         <ResultBox result={result} />
