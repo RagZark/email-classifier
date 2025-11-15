@@ -101,3 +101,36 @@ cd frontend
 npm run dev
 ```
 Aplicação disponível em: http://localhost:5173
+
+## Deploy
+
+A aplicação está configurada para deploy no Render.com, com um único link contendo frontend e backend.
+
+## Variáveis de Ambiente
+
+GOOGLE_API_KEY: Chave da API Google Gemini
+
+FLASK_ENV: Ambiente de execução (production)
+
+API
+Endpoint Principal
+
+POST /api/classify - Classifica email e gera resposta
+
+Parâmetros
+
+text (string): Conteúdo do email
+
+file (arquivo): Arquivo .txt ou .pdf
+
+Resposta
+```
+{
+  "category": "Produtivo|Improdutivo",
+  "auto_response": "Resposta gerada automaticamente"
+}
+```
+
+Licença
+
+Este projeto é para fins educacionais e de demonstração.
