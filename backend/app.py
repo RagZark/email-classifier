@@ -1,17 +1,12 @@
 from flask import Flask
-from routes.classify import classify_bp
-from flask_cors import CORS
+from routes.classify_routes import routes
 
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(routes)
+    return app
 
-app = Flask(__name__)
-CORS(app)
+app = create_app()
 
-app.register_blueprint(classify_bp)
-
-@app.get("/")
-def home():
-    return {"status": "Backend inicializado com flask+gemini"}
-
-
-if ___name___ == "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
