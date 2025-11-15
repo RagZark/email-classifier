@@ -1,5 +1,12 @@
+#Backend
 backend/.venv/
 backend/.env
-backend/__pycache__/
+backend/__pycache__/*
+backend/utils/__pycache__/__init__.cpython-314.pyc
+backend/utils/__pycache__/ai_client.cpython-314.pyc
 backend/*.pyc
 backend/model/*.joblib
+
+#Frontend
+.DS_Store
+.vscode/
