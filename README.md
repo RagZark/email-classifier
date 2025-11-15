@@ -101,25 +101,3 @@ cd frontend
 npm run dev
 ```
 Aplicação disponível em: http://localhost:5173
-
-email-classifier/
-├── backend/
-│   ├── app.py
-│   ├── routes/
-│   │   └── classify_routes.py
-│   ├── services/
-│   │   └── classifier_service.py
-│   ├── utils/
-│   │   ├── ai_client.py
-│   │   └── extract_text.py
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── UploadForm.jsx
-│   │   │   └── ResultBox.jsx
-│   │   ├── api.js
-│   │   └── App.jsx
-│   └── package.json
-└── README.md
-
