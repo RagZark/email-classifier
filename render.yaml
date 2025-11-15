@@ -4,7 +4,9 @@ services:
     env: python
     plan: free
     region: ohio
-    buildCommand: chmod +x ./build.sh && ./build.sh
+    buildCommand: |
+      cd frontend && npm install && npm run build
+      cd ../backend && pip install -r requirements.txt
     startCommand: cd backend && gunicorn app:app
     envVars:
       - key: GEMINI_API_KEY
