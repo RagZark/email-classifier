@@ -35,15 +35,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-950 via-orange-900 to-amber-900 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-white mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-950 via-orange-900 to-amber-900 flex flex-col items-center md:justify-center p-4 ">
+      <h1 className="md:text-4xl text-2xl font-bold text-white mb-3 mt-3 md:mb-4">
         Classificador de Email com IA
       </h1>
-      <div className="flex w-full justify-center items-center">
+      <div className="flex w-full md:justify-center md:items-center md:flex-row flex-col">
         <UploadForm onSubmitFileOrText={handleSubmit} />
 
         {loading && (
-          <p className="w-80 h-80 bg-white/5 border-2 border-orange-400/30 rounded-xl text-white placeholder-orange-300/50 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 flex flex-col justify-center pl-4">
+          <p className="md:w-80 md:h-80 w-80 h-60 mt-4 bg-white/5 border-2 border-orange-400/30 rounded-xl text-white placeholder-orange-300/50 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 flex flex-col justify-center pl-4">
             Processando...
           </p>
         )}

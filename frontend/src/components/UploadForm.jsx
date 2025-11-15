@@ -27,7 +27,7 @@ export default function UploadForm({ onSubmitFileOrText }) {
           onChange={(e) => setText(e.target.value)}
           placeholder="Digite seu envio de email aqui"
           rows={6}
-          className="w-full px-4 py-3 bg-white/5 border-2 border-orange-400/30 rounded-xl text-white placeholder-orange-300/50 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 transition-all resize-none"
+          className="w-full px-4 py-3 bg-white/5 border-2 border-orange-400/30 rounded-xl text-white placeholder-orange-300/50 focus:outline-none focus:border-orange-400 transition-all resize-none"
         />
       </div>
       <div>
@@ -46,9 +46,9 @@ export default function UploadForm({ onSubmitFileOrText }) {
           />
           <label
             htmlFor="file-input"
-            className="flex items-center justify-center gap-3 w-full px-20 py-4 bg-white/5 border-2 border-dashed border-orange-400/30 rounded-xl cursor-pointer hover:bg-white/10 hover:border-orange-400 transition-all group"
+            className="flex items-center justify-center gap-3 w-full px-4 py-4 bg-white/5 border-2 border-dashed border-orange-400/30 rounded-xl cursor-pointer hover:bg-white/10 hover:border-orange-400 transition-all group"
           >
-            <span className="text-orange-100">
+            <span className="text-orange-100 self-center">
               "Clique para selecionar um arquivo"
             </span>
           </label>
