@@ -7,8 +7,8 @@ services:
     buildCommand: chmod +x ./build.sh && ./build.sh
     startCommand: cd backend && gunicorn app:app
     envVars:
-      - key: GOOGLE_API_KEY
-        value: sua_chave_da_google_aqui
+      - key: GEMINI_API_KEY
+        value: sua_chave_da_gemini_aqui
       - key: FLASK_ENV
         value: production
     staticPublishPath: ./frontend/dist
