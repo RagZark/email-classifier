@@ -10,3 +10,6 @@ backend/model/*.joblib
 #Frontend
 .DS_Store
 .vscode/
+backend/routes/__pycache__/__init__.cpython-314.pyc
+backend/routes/__pycache__/classify_routes.cpython-314.pyc
+backend/utils/__pycache__/extract_text.cpython-314.pyc

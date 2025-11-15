@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 
 export default function UploadForm({ onSubmitFileOrText }) {
   const [file, setFile] = useState(null);
@@ -40,7 +39,3 @@ export default function UploadForm({ onSubmitFileOrText }) {
     </form>
   );
 }
-
-UploadForm.propTypes = {
-  onSubmitFileOrText: PropTypes.func.isRequired,
-};
