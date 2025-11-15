@@ -10,6 +10,7 @@ export default function App() {
 
   const handleSubmit = async (input) => {
     setLoading(true);
+
     setError(null);
     setResult(null);
 
@@ -34,15 +35,21 @@ export default function App() {
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
-      <h1>Classificador de Email com IA</h1>
-      <UploadForm onSubmitFileOrText={handleSubmit} />
+    <div className="min-h-screen bg-gradient-to-br from-orange-950 via-orange-900 to-amber-900 flex flex-col items-center justify-center p-4">
+      <h1 className="text-4xl font-bold text-white mb-4">
+        Classificador de Email com IA
+      </h1>
+      <div className="flex w-full justify-center">
+        <UploadForm onSubmitFileOrText={handleSubmit} />
 
-      {loading && <p>Processando...</p>}
+        {loading && <p>Processando...</p>}
 
-      {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
+        {error && (
+          <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
+        )}
 
-      <ResultBox result={result} />
+        <ResultBox result={result} />
+      </div>
     </div>
   );
 }
