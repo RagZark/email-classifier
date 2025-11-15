@@ -5,14 +5,12 @@ const getApiBaseUrl = () => {
     return "http://localhost:5000/api";
   }
 
-  // Substituir pela URL real do seu backend após o deploy
-  return "https://seu-backend.railway.app/api";
-  // se for render: "https://seu-backend.onrender.com/api"
+  return "/api";
 };
 
 const API_BASE_URL = getApiBaseUrl();
 
-console.log("🔧 API Base URL:", API_BASE_URL);
+console.log("API Base URL:", API_BASE_URL);
 
 const api = axios.create({
   baseURL: API_BASE_URL,

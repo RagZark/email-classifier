@@ -1,21 +1,21 @@
 import os
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from routes.classify_routes import routes
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/dist')
 
 CORS(app)
 
 app.register_blueprint(routes, url_prefix='/api')
 
 @app.route('/')
-def home():
-    return {
-        "message": "Email Classifier API is running! 🚀",
-        "status": "success", 
-        "version": "1.0.0"
-    }
+def serve_frontend():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static_files(path):
+    return send_from_directory(app.static_folder, path)
 
 @app.route('/health')
 def health_check():
